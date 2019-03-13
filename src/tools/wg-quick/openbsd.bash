@@ -426,6 +426,10 @@ cmd_save() {
 	save_config
 }
 
+cmd_strip() {
+	echo "$WG_CONFIG"
+}
+
 # ~~ function override insertion point ~~
 
 if [[ $# -eq 1 && ( $1 == --help || $1 == -h || $1 == help ) ]]; then
@@ -442,6 +446,10 @@ elif [[ $# -eq 2 && $1 == save ]]; then
 	auto_su
 	parse_options "$2"
 	cmd_save
+elif [[ $# -eq 2 && $1 == strip ]]; then
+	auto_su
+	parse_options "$2"
+	cmd_strip
 else
 	cmd_usage
 	exit 1
